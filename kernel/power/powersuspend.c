@@ -40,6 +40,9 @@
 #define POWER_SUSPEND_DEBUG // Add debugging prints in dmesg
 #endif
 
+static unsigned int sleep_state = 0;
+module_param_named(sleep_state, sleep_state, uint, 0644);
+
 struct workqueue_struct *suspend_work_queue;
 
 static DEFINE_MUTEX(power_suspend_lock);
@@ -107,6 +110,7 @@ static void power_suspend(struct work_struct *work)
 #ifdef POWER_SUSPEND_DEBUG
 	pr_info("[POWERSUSPEND] suspend completed.\n");
 #endif
+	sleep_state = 1;
 abort_suspend:
 	mutex_unlock(&power_suspend_lock);
 }
@@ -132,6 +136,7 @@ static void power_resume(struct work_struct *work)
 #ifdef POWER_SUSPEND_DEBUG
 	pr_info("[POWERSUSPEND] resuming...\n");
 #endif
+	sleep_state = 0;
 	list_for_each_entry_reverse(pos, &power_suspend_handlers, link) {
 		if (pos->resume != NULL) {
 			pos->resume(pos);
