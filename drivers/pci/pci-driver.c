@@ -396,6 +396,7 @@ static void pci_device_shutdown(struct device *dev)
 
 	if (pci_dev->current_state <= PCI_D3hot)
 		pci_clear_master(pci_dev);
+#endif
 }
 
 #ifdef CONFIG_PM
