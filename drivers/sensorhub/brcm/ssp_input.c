@@ -20,6 +20,15 @@
 #include <linux/iio/buffer.h>
 #include <linux/iio/types.h>
 
+#include <linux/moduleparam.h>
+
+static int wl_motion = 3;
+module_param(wl_motion, int, 0644);
+static int wl_prox = 1;
+module_param(wl_prox, int, 0644);
+static int wl_temp = 2;
+module_param(wl_temp, int, 0644);
+
 /*************************************************************************/
 /* SSP Kernel -> HAL input evnet function                                */
 /*************************************************************************/
@@ -291,6 +300,8 @@ void report_sig_motion_data(struct ssp_data *data,
 	input_report_rel(data->sig_motion_input_dev, REL_MISC,
 		data->buf[SIG_MOTION_SENSOR].sig_motion);
 	input_sync(data->sig_motion_input_dev);
+	
+	wake_lock_timeout(&data->ssp_wake_lock, wl_motion * HZ);
 }
 
 void report_rot_data(struct ssp_data *data, struct sensor_value *rotdata)
@@ -448,7 +459,7 @@ void report_prox_data(struct ssp_data *data, struct sensor_value *proxdata)
 		(!proxdata->prox[0]) + 1);
 	input_sync(data->prox_input_dev);
 
-	wake_lock_timeout(&data->ssp_wake_lock, 3 * HZ);
+	wake_lock_timeout(&data->ssp_wake_lock, wl_prox * HZ);
 }
 
 void report_prox_raw_data(struct ssp_data *data,
@@ -514,7 +525,7 @@ void report_temp_humidity_data(struct ssp_data *data,
 		data->buf[TEMPERATURE_HUMIDITY_SENSOR].y);
 	input_sync(data->temp_humi_input_dev);
 	if (data->buf[TEMPERATURE_HUMIDITY_SENSOR].z)
-		wake_lock_timeout(&data->ssp_wake_lock, 2 * HZ);
+		wake_lock_timeout(&data->ssp_wake_lock, wl_temp * HZ);
 }
 
 #ifdef CONFIG_SENSORS_SSP_SHTC1
