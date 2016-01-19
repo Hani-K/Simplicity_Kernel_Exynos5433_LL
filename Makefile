@@ -194,11 +194,6 @@ SUBARCH := $(shell uname -m | sed -e s/i.86/x86/ -e s/x86_64/x86/ \
 # Note: Some architectures assign CROSS_COMPILE in their arch/*/Makefile
 export KBUILD_BUILDHOST := $(SUBARCH)
 ARCH		?=arm
-<<<<<<< HEAD
-#CROSS_COMPILE	?=/home/hani/android/toolchains/arm-linux-androideabi-4.8/bin/arm-linux-androideabi-
-#CROSS_COMPILE	?=/home/hani/android/toolchains/arm-linux-androideabi-4.6/bin/arm-linux-androideabi-
-=======
->>>>>>> 761a082699bdaab88b93fded9db31485ffb64293
 CROSS_COMPILE	?=/home/hani/android/toolchains/arm-eabi-4.8/bin/arm-eabi-
 
 # Architecture as present in compile.h
