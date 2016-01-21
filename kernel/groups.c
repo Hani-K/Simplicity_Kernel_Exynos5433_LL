@@ -232,14 +232,6 @@ bool may_setgroups(void)
 		userns_may_setgroups(user_ns);
 }
 
-bool may_setgroups(void)
-{
-	struct user_namespace *user_ns = current_user_ns();
-
-	return ns_capable(user_ns, CAP_SETGID) &&
-		userns_may_setgroups(user_ns);
-}
-
 /*
  *	SMP: Our groups are copy-on-write. We can set them safely
  *	without another task interfering.

@@ -1268,8 +1268,7 @@ static int mmc_blk_err_check(struct mmc_card *card,
 	if (!card->ext_csd.cmdq_mode_en) {
 		if (brq->sbc.error || brq->cmd.error || brq->stop.error ||
 		    brq->data.error) {
-			switch (mmc_blk_cmd_recovery(card, req,
-							brq, &ecc_err)) {
+			switch (mmc_blk_cmd_recovery(card, req,	brq, &ecc_err, &gen_err)) {
 			case ERR_RETRY:
 				return MMC_BLK_RETRY;
 			case ERR_ABORT:
