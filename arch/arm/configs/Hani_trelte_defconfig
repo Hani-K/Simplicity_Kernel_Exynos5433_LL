@@ -2,6 +2,8 @@
 # Hani K.
 # Simplicity
 #
+CONFIG_BCMDHD_WIFI_PM=y
+#
 #
 CONFIG_ARM=y
 CONFIG_MIGHT_HAVE_PCI=y
