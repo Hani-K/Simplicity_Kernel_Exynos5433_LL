@@ -75,11 +75,7 @@ int ablk_encrypt(struct ablkcipher_request *req)
 		struct ablkcipher_request *cryptd_req =
 			ablkcipher_request_ctx(req);
 
-<<<<<<< HEAD
 		*cryptd_req = *req;
-=======
-		memcpy(cryptd_req, req, sizeof(*req));
->>>>>>> bcd337c... crypto: create generic version of ablk_helper [Jussi Kivilinna]
 		ablkcipher_request_set_tfm(cryptd_req, &ctx->cryptd_tfm->base);
 
 		return crypto_ablkcipher_encrypt(cryptd_req);
@@ -98,11 +94,7 @@ int ablk_decrypt(struct ablkcipher_request *req)
 		struct ablkcipher_request *cryptd_req =
 			ablkcipher_request_ctx(req);
 
-<<<<<<< HEAD
 		*cryptd_req = *req;
-=======
-		memcpy(cryptd_req, req, sizeof(*req));
->>>>>>> bcd337c... crypto: create generic version of ablk_helper [Jussi Kivilinna]
 		ablkcipher_request_set_tfm(cryptd_req, &ctx->cryptd_tfm->base);
 
 		return crypto_ablkcipher_decrypt(cryptd_req);
