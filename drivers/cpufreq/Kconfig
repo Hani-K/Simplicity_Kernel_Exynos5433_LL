@@ -139,15 +139,6 @@ config CPU_FREQ_DEFAULT_GOV_YANKACTIVE
 	   loading your cpufreq low-level hardware driver, using the
 	   'yankactive' governor for latency-sensitive workloads.
 
-config CPU_FREQ_DEFAULT_GOV_UMBRELLA_CORE
-	bool "umbrella_core"
-	select CPU_FREQ_GOV_UMBRELLA_CORE
-	help
-	  Use the CPUFreq governor 'umbrella_core' as default. This allows
-	  you to get a full dynamic cpu frequency capable system by simply
-	  loading your cpufreq low-level hardware driver, using the
-	  'umbrella_core' governor for latency-sensitive workloads.
-
 config CPU_FREQ_DEFAULT_GOV_ELEMENTALX
 	bool "elementalx"
 	select CPU_FREQ_GOV_ELEMENTALX

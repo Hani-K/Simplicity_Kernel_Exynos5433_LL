@@ -155,6 +155,7 @@ static void dbs_freq_increase(struct cpufreq_policy *p, unsigned int freq)
 
 	__cpufreq_driver_target(p, freq, od_tuners->powersave_bias ?
 			CPUFREQ_RELATION_C : CPUFREQ_RELATION_H);
+}
 
 /*
  * Every sampling_rate, we check, if current idle time is less than 20%
@@ -490,6 +491,7 @@ static int od_init(struct dbs_data *dbs_data)
 	struct od_dbs_tuners *tuners;
 	u64 idle_time;
 	int cpu;
+	
 
 	tuners = kzalloc(sizeof(*tuners), GFP_KERNEL);
 	if (!tuners) {
