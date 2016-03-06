@@ -64,6 +64,8 @@ static short lowmem_adj[6] = {
 	1,
 	6,
 	12,
+	13,
+ 	15,
 };
 static int lowmem_adj_size = 6;
 static int lowmem_minfree[6] = {
