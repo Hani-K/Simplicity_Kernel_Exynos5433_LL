@@ -468,8 +468,6 @@ static void gpio_keys_gpio_report_event(struct gpio_button_data *bdata)
 #ifdef CONFIG_INPUT_BOOSTER
 	if (button->code == KEY_HOMEPAGE)
 		input_booster_send_event(BOOSTER_DEVICE_KEY, !!state);
-	if ((button->code == KEY_RECENT) || (button->code == KEY_BACK))
-		input_booster_send_event(BOOSTER_DEVICE_TOUCHKEY, !!state);
 #endif
 }
 
@@ -718,9 +716,6 @@ static void gpio_keys_close(struct input_dev *input)
 		struct gpio_button_data *bdata = &ddata->data[i];
 		if (bdata->button->code == KEY_HOMEPAGE) {
 			input_booster_send_event(BOOSTER_DEVICE_KEY, BOOSTER_MODE_FORCE_OFF);
-		}
-		if ((bdata->button->code == KEY_RECENT) ||(bdata->button->code == KEY_BACK)) {
-			input_booster_send_event(BOOSTER_DEVICE_TOUCHKEY, BOOSTER_MODE_FORCE_OFF);
 		}
 	}
 #endif

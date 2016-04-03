@@ -418,7 +418,6 @@ DECLARE_TIMEOUT_FUNC(keyboard);
 DECLARE_TIMEOUT_FUNC(mouse);
 DECLARE_TIMEOUT_FUNC(mouse_wheel);
 DECLARE_TIMEOUT_FUNC(pen);
-DECLARE_TIMEOUT_FUNC(hover);
 
 // ********** Define Set Booster Functions ********** //
 DECLARE_SET_BOOSTER_FUNC(touch);
@@ -429,18 +428,7 @@ DECLARE_SET_BOOSTER_FUNC(keyboard);
 DECLARE_SET_BOOSTER_FUNC(mouse);
 DECLARE_SET_BOOSTER_FUNC(mouse_wheel);
 DECLARE_SET_BOOSTER_FUNC(pen);
-DECLARE_SET_BOOSTER_FUNC(hover);
 
-// ********** Define Reet Booster Functions ********** //
-DECLARE_RESET_BOOSTER_FUNC(touch);
-DECLARE_RESET_BOOSTER_FUNC(multitouch);
-DECLARE_RESET_BOOSTER_FUNC(key);
-DECLARE_RESET_BOOSTER_FUNC(touchkey);
-DECLARE_RESET_BOOSTER_FUNC(keyboard);
-DECLARE_RESET_BOOSTER_FUNC(mouse);
-DECLARE_RESET_BOOSTER_FUNC(mouse_wheel);
-DECLARE_RESET_BOOSTER_FUNC(pen);
-DECLARE_RESET_BOOSTER_FUNC(hover);
 // ********** Define State Functions ********** //
 DECLARE_STATE_FUNC(idle)
 {
@@ -708,8 +696,6 @@ void input_booster_init()
 	INIT_BOOSTER(mouse)
 	INIT_BOOSTER(mouse_wheel)
 	INIT_BOOSTER(pen)
-	INIT_BOOSTER(hover)
-	multitouch_booster.change_on_release = 1;
 
 	// ********** Initialize Sysfs **********
 	{
@@ -734,8 +720,7 @@ void input_booster_init()
 		INIT_SYSFS_DEVICE(keyboard)
 		INIT_SYSFS_DEVICE(mouse)
 		INIT_SYSFS_DEVICE(mouse_wheel)
-		INIT_SYSFS_DEVICE(pen)
-		INIT_SYSFS_DEVICE(hover)
+		INIT_SYSFS_DEVICE(pen)  
 	}
 } 
 #endif  // Input Booster - 
